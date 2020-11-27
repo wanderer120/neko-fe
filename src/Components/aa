@@ -1,0 +1,12 @@
+{this.props!==undefined&&this.props.itemIds!==undefined?<ScrollMenu
+  arrowLeft={<div style={{ fontSize: "30px" }}>{" < "}</div>}
+  arrowRight={<div style={{ fontSize: "30px" }}>{" > "}</div>}
+  data={this.props.itemIds.map((id, power) => (
+    <img
+      key={id}
+      style={{ height: "100px" }}
+      alt="test"
+      src="https://reactjs.org/logo-og.png"
+    />
+  ))}
+/>:''}

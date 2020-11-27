@@ -41,7 +41,20 @@ class App extends Component {
             this.setState({itemCount:result.itemCount})
           });
           userDetailObj.contract.methods.lastItemId().call().then((result)=>{
-            this.setState({universeItemCount:(result-1)})
+            this.setState({universeItemCount:(result)})
+          });
+          userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
+            console.log(result);
+            let itemObj = {};
+            itemObj.idArr = [];
+            itemObj.powerArr = [];
+            for(let i=0;i<result[Object.keys(result)[0]].length;i++){
+              itemObj.idArr[i] = result[Object.keys(result)[0]][i];
+              itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
+            }
+            userDetailObj.itemIdArr = itemObj.idArr;
+            userDetailObj.itemPowerArr = itemObj.powerArr;
+            this.setState({userDetail:userDetailObj});
           });
         }
       },()=>{
@@ -61,7 +74,51 @@ class App extends Component {
     }
     this.LoginToMetamask = this.LoginToMetamask.bind(this);
     window.ethereum.on('accountsChanged', function (accounts) {
-      window.location.reload();
+      //window.location.reload();
+      if (!ethEnabled()) {
+        alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
+      }
+      else{
+        let userDetailObj = {};
+        window.web3.eth.getAccounts().then((accounts)=>{
+          if (accounts.length === 0) {
+            console.log('MetaMask is locked')
+            app.setState({isLogin:false})
+          }
+          else {
+            app.setState({isLogin:true})
+            userDetailObj.account = accounts[0]
+            window.web3.eth.getBalance(accounts[0]).then((value)=>{
+              userDetailObj.balance = window.web3.utils.fromWei(value)
+              app.setState({userDetail:userDetailObj})
+            });
+            userDetailObj.contract = new window.web3.eth.Contract(_ABI, _CONTRACT_ADDRESS)
+            userDetailObj.contract.methods.isUserExists(userDetailObj.account).call().then((result)=>{
+              userDetailObj.userExist = result
+              app.setState({userExist:result})
+            });
+            userDetailObj.contract.methods.users(userDetailObj.account).call().then((result)=>{
+              userDetailObj.itemCount = result.itemCount;
+              app.setState({itemCount:result.itemCount})
+            });
+            userDetailObj.contract.methods.lastItemId().call().then((result)=>{
+              app.setState({universeItemCount:(result)})
+            });
+            userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
+              let itemObj = {};
+              for(let i=0;i<result[Object.keys(result)[0]].length;i++){
+                itemObj.id = result[Object.keys(result)[0]][i];
+                itemObj.power = result[Object.keys(result)[1]][i];
+              }
+              userDetailObj.itemIdArr = itemObj.idArr;
+              userDetailObj.itemPowerArr = itemObj.powerArr;
+              app.setState({userDetail:userDetailObj});
+            });
+          }
+        },()=>{
+          console.log("fail callback");
+        })
+      }
     });
   }
   render() {
@@ -72,8 +129,8 @@ class App extends Component {
     }
     else {
       return (
-        <div className="container">
-          <Button variant="primary" onClick={this.LoginToMetamask}>Connect to Metamask</Button>{' '}
+        <div className="container" style={{display: 'flex', justifyContent: 'center'}}>
+          <Button variant="primary" onClick={this.LoginToMetamask}>Connect to Metamask</Button>
         </div>
       );
     }

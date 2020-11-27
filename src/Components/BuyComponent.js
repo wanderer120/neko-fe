@@ -26,7 +26,7 @@ export default class BuyComponent extends Component {
   }
   render(){
     return(
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
         <span>Buy More Item: </span><Button onClick={this.BuyItem}>0.05 ETH</Button>
       </div>
     );

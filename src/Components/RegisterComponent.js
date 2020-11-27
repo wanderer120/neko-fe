@@ -10,7 +10,7 @@ class RegisterComponent extends Component{
   }
   render(){
     return(
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
         <span>Referrer ETH wallet address:</span><input type="text" name="refAddress" onChange={this.handleChange}/>
         <Button onClick={this.RegisterUser}>Register for 0.05 ETH</Button>
       </div>
