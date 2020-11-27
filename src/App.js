@@ -74,7 +74,8 @@ class App extends Component {
     }
     this.LoginToMetamask = this.LoginToMetamask.bind(this);
     window.ethereum.on('accountsChanged', function (accounts) {
-      //window.location.reload();
+      window.location.reload();
+      /*
       if (!ethEnabled()) {
         alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
       }
@@ -107,18 +108,19 @@ class App extends Component {
             userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
               let itemObj = {};
               for(let i=0;i<result[Object.keys(result)[0]].length;i++){
-                itemObj.id = result[Object.keys(result)[0]][i];
-                itemObj.power = result[Object.keys(result)[1]][i];
+                itemObj.idArr = result[Object.keys(result)[0]][i];
+                itemObj.powerArr = result[Object.keys(result)[1]][i];
               }
               userDetailObj.itemIdArr = itemObj.idArr;
               userDetailObj.itemPowerArr = itemObj.powerArr;
+              console.log(itemObj.idArr);
               app.setState({userDetail:userDetailObj});
             });
           }
         },()=>{
           console.log("fail callback");
         })
-      }
+      }*/
     });
   }
   render() {
