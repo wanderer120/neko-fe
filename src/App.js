@@ -44,7 +44,6 @@ class App extends Component {
             this.setState({universeItemCount:(result)})
           });
           userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
-            console.log(result);
             let itemObj = {};
             itemObj.idArr = [];
             itemObj.powerArr = [];
@@ -55,6 +54,19 @@ class App extends Component {
             userDetailObj.itemIdArr = itemObj.idArr;
             userDetailObj.itemPowerArr = itemObj.powerArr;
             this.setState({userDetail:userDetailObj});
+          });
+          userDetailObj.contract.methods.lastItemId().call().then((result)=>{
+            if(result>8){
+              userDetailObj.winnerArr = [];
+              userDetailObj.winnerAmountArr = [];
+              for(let i=0;i<8;i++){
+                userDetailObj.contract.methods.allItems(i).call().then((result)=>{
+                  userDetailObj.winnerArr[i] = result.owner.substring(0,6)+"...";
+                  userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result.LastWinAmount,'ether');
+                  this.setState({userDetail:userDetailObj});
+                });
+              }
+            }
           });
         }
       },()=>{

@@ -10,3 +10,13 @@
     />
   ))}
 />:''}
+
+
+
+<tbody>
+  {(this.props!==undefined&&this.props.winnerArr!==undefined)?
+    this.props.winnerArr.map((address,index)=>{
+      <tr><td>{index}</td><td>{address}</td><td>{this.props.winnerAmountArr[index]}</td></tr>
+    }):<tr></tr>
+  }
+</tbody>
