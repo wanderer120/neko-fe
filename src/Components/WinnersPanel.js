@@ -9,7 +9,9 @@ export default class WinnersPanel extends Component {
     return(
       this.props.winnerArr!==undefined?this.props.winnerArr.map((address,index) => (
         <div key={index}>
-          <span>#{(index+1)}:&nbsp;</span><span>{address} - </span><span>{this.props.winnerAmountArr[index]}&nbsp;ETH</span><br/>
+          <span>#{(index+1)}:&nbsp;</span>
+          <span>{address} - </span>
+          <span>{this.props.winnerAmountArr[index]}&nbsp;ETH</span><br/>
         </div>
       )):<div></div>
     );

@@ -25,7 +25,8 @@ export default class Inventory extends Component {
           data={this.props.itemIds!==undefined?this.props.itemIds.map((id,index) => (
             <div style={itemBox} key={id}>
               <span>Item#{id}</span><br/>
-              <span>Power:{this.props.itemPowers[index]}</span>
+              <span>Power:{this.props.itemPowers[index]}</span><br/>
+              <span>Last Win:{this.props.lastWin[index]}</span>
             </div>
           )):''}
         />

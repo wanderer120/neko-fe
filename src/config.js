@@ -1,4 +1,5 @@
-export const _CONTRACT_ADDRESS = '0x095c9236725235a4CD94C609fc259D886001188E' //testnet v1.31
+export const _CONTRACT_ADDRESS = '0x25681E3817EEfb9bBFdBC4398A30AfFfA407aA52' //testnet v1.32
+//'0x095c9236725235a4CD94C609fc259D886001188E' //testnet v1.31
 //'0x3899c379c4deef307ceb1c3f3265be3c9a6ff5cf' //testnet v1.3
 //'0xb2F7e75926cacfD83Ee7B5c4cb04F573Ee58eC76' // testnet v1.2
 //'0xDb1fa87118627E1850B9144EEFd43B46b35F3eD9' //testnet v1.1
@@ -308,6 +309,11 @@ export const _ABI = [
 		],
 		"name": "getAllItemsByUser",
 		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
 			{
 				"internalType": "uint256[]",
 				"name": "",

@@ -47,12 +47,15 @@ class App extends Component {
             let itemObj = {};
             itemObj.idArr = [];
             itemObj.powerArr = [];
+            itemObj.lastWinArr = [];
             for(let i=0;i<result[Object.keys(result)[0]].length;i++){
               itemObj.idArr[i] = result[Object.keys(result)[0]][i];
               itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
+              itemObj.lastWinArr[i] = result[Object.keys(result)[2]][i];
             }
             userDetailObj.itemIdArr = itemObj.idArr;
             userDetailObj.itemPowerArr = itemObj.powerArr;
+            userDetailObj.lastWinArr = itemObj.lastWinArr;
             this.setState({userDetail:userDetailObj});
           });
           userDetailObj.contract.methods.lastItemId().call().then((result)=>{
@@ -86,8 +89,8 @@ class App extends Component {
     }
     this.LoginToMetamask = this.LoginToMetamask.bind(this);
     window.ethereum.on('accountsChanged', function (accounts) {
-      window.location.reload();
-      /*
+      //window.location.reload();
+
       if (!ethEnabled()) {
         alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
       }
@@ -119,20 +122,37 @@ class App extends Component {
             });
             userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
               let itemObj = {};
+              itemObj.idArr = [];
+              itemObj.powerArr = [];
+              itemObj.lastWinArr = [];
               for(let i=0;i<result[Object.keys(result)[0]].length;i++){
-                itemObj.idArr = result[Object.keys(result)[0]][i];
-                itemObj.powerArr = result[Object.keys(result)[1]][i];
+                itemObj.idArr[i] = result[Object.keys(result)[0]][i];
+                itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
+                itemObj.lastWinArr[i] = result[Object.keys(result)[2]][i];
               }
               userDetailObj.itemIdArr = itemObj.idArr;
               userDetailObj.itemPowerArr = itemObj.powerArr;
-              console.log(itemObj.idArr);
+              userDetailObj.lastWinArr = itemObj.lastWinArr;
               app.setState({userDetail:userDetailObj});
+            });
+            userDetailObj.contract.methods.lastItemId().call().then((result)=>{
+              if(result>8){
+                userDetailObj.winnerArr = [];
+                userDetailObj.winnerAmountArr = [];
+                for(let i=0;i<8;i++){
+                  userDetailObj.contract.methods.allItems(i).call().then((result)=>{
+                    userDetailObj.winnerArr[i] = result.owner.substring(0,6)+"...";
+                    userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result.LastWinAmount,'ether');
+                    app.setState({userDetail:userDetailObj});
+                  });
+                }
+              }
             });
           }
         },()=>{
           console.log("fail callback");
         })
-      }*/
+      }
     });
   }
   render() {
