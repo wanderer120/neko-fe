@@ -51,7 +51,7 @@ class App extends Component {
             for(let i=0;i<result[Object.keys(result)[0]].length;i++){
               itemObj.idArr[i] = result[Object.keys(result)[0]][i];
               itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
-              itemObj.lastWinArr[i] = result[Object.keys(result)[2]][i];
+              itemObj.lastWinArr[i] = window.web3.utils.fromWei(result[Object.keys(result)[2]][i],'ether');
             }
             userDetailObj.itemIdArr = itemObj.idArr;
             userDetailObj.itemPowerArr = itemObj.powerArr;
@@ -128,7 +128,7 @@ class App extends Component {
               for(let i=0;i<result[Object.keys(result)[0]].length;i++){
                 itemObj.idArr[i] = result[Object.keys(result)[0]][i];
                 itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
-                itemObj.lastWinArr[i] = result[Object.keys(result)[2]][i];
+                itemObj.lastWinArr[i] = window.web3.utils.fromWei(result[Object.keys(result)[2]][i],'ether');
               }
               userDetailObj.itemIdArr = itemObj.idArr;
               userDetailObj.itemPowerArr = itemObj.powerArr;

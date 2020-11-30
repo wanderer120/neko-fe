@@ -26,7 +26,7 @@ export default class Inventory extends Component {
             <div style={itemBox} key={id}>
               <span>Item#{id}</span><br/>
               <span>Power:{this.props.itemPowers[index]}</span><br/>
-              <span>Last Win:{this.props.lastWin[index]}</span>
+              <span>Last Win:{parseFloat(this.props.lastWin[index]).toFixed(6)}&nbsp;ETH</span>
             </div>
           )):''}
         />

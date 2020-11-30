@@ -11,7 +11,7 @@ export default class WinnersPanel extends Component {
         <div key={index}>
           <span>#{(index+1)}:&nbsp;</span>
           <span>{address} - </span>
-          <span>{this.props.winnerAmountArr[index]}&nbsp;ETH</span><br/>
+          <span>{parseFloat(this.props.winnerAmountArr[index]).toFixed(6)}&nbsp;ETH</span><br/>
         </div>
       )):<div></div>
     );
