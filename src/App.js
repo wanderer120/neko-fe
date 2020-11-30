@@ -85,9 +85,13 @@ class App extends Component {
       userDetail: {account:-1,balance:-1,contract:{}},
       userExist: false,
       itemCount:-1,
-      universeItemCount:-1
+      universeItemCount:-1,
+      isW3:false
     }
     this.LoginToMetamask = this.LoginToMetamask.bind(this);
+    if(window.ethereum!==undefined){
+      this.setState({isW3:true});
+    }
     window.ethereum.on('accountsChanged', function (accounts) {
       //window.location.reload();
 
@@ -156,7 +160,7 @@ class App extends Component {
     });
   }
   render() {
-    if(this.state.isLogin){
+    if(this.state.isLogin && this.state.isW3){
       return (
         <MainPage userDetail={this.state.userDetail} universeItemCount={this.state.universeItemCount}/>
       );
