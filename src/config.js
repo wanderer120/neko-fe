@@ -1,4 +1,10 @@
-export const _CONTRACT_ADDRESS = '0x0CaE274079600c2175B5dC322c2F7FCdb5985A62' // testnet v1.34
+export const _CONTRACT_ADDRESS = '0xFA049942D60332Fac50038E57357B08f92b3E59f' ////testnet v1.45 optimize functions
+//'0x526D3079340f0dc6013570981F213669E5cAC09D'//testnet v1.44 - test single transfer with multitransfer
+//'0x08321c0FEa5Ca2B59dA91983d81b0B36230a5507' //testnet v1.43  - optimize 200 compile
+//'0xf9Ee09e07E6bbDB7A785d55834dbf420586E270F' //testnet v1.42 - optimize comparison 8 users
+//'0x85Ec8e4dC2548f6FCCdc18A09aF37078ce69a465'// testnet v1.42 - optimize comparison
+//'0x65FE4d1dc8e9F11edDd92D8e13d4884CDaA1a8B9' // testnet v1.41 - optimize
+//'0x0CaE274079600c2175B5dC322c2F7FCdb5985A62' // testnet v1.4 - githubpage
 //'0x004177bF37568A178BD510DB6644a3645a97e749' //testnet v1.33
 //'0x25681E3817EEfb9bBFdBC4398A30AfFfA407aA52' //testnet v1.32
 //'0x095c9236725235a4CD94C609fc259D886001188E' //testnet v1.31
@@ -75,26 +81,6 @@ export const _ABI = [
 		"type": "event"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -169,61 +155,6 @@ export const _ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -247,19 +178,14 @@ export const _ABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "operator",
+				"name": "receiver",
 				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "_approved",
-				"type": "bool"
 			}
 		],
-		"name": "setApprovalForAll",
+		"name": "singleTransfer",
 		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -292,60 +218,14 @@ export const _ABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "from",
+				"name": "receiver",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
 			}
 		],
-		"name": "transferFrom",
+		"name": "x8Transfer",
 		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "allItems",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "power",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "LastWinAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -356,27 +236,6 @@ export const _ABI = [
 			{
 				"internalType": "uint256",
 				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "balance",
 				"type": "uint256"
 			}
 		],
@@ -448,19 +307,18 @@ export const _ABI = [
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
+		"inputs": [],
+		"name": "getWinners",
 		"outputs": [
 			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
 			}
 		],
 		"payable": false,
@@ -482,32 +340,6 @@ export const _ABI = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "isApprovedForAll",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -625,27 +457,6 @@ export const _ABI = [
 				"internalType": "address",
 				"name": "_owner",
 				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "bytes4",
-				"name": "interfaceId",
-				"type": "bytes4"
-			}
-		],
-		"name": "supportsInterface",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"payable": false,

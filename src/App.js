@@ -63,9 +63,9 @@ class App extends Component {
               userDetailObj.winnerArr = [];
               userDetailObj.winnerAmountArr = [];
               for(let i=0;i<8;i++){
-                userDetailObj.contract.methods.allItems(i).call().then((result)=>{
-                  userDetailObj.winnerArr[i] = result.owner.substring(0,6)+"...";
-                  userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result.LastWinAmount,'ether');
+                userDetailObj.contract.methods.getWinners().call().then((result)=>{
+                  userDetailObj.winnerArr[i] = result[Object.keys(result)[0]][i].substring(0,6)+"...";
+                  userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result[Object.keys(result)[1]][i],'ether');
                   this.setState({userDetail:userDetailObj});
                 });
               }
@@ -145,9 +145,9 @@ class App extends Component {
                   userDetailObj.winnerArr = [];
                   userDetailObj.winnerAmountArr = [];
                   for(let i=0;i<8;i++){
-                    userDetailObj.contract.methods.allItems(i).call().then((result)=>{
-                      userDetailObj.winnerArr[i] = result.owner.substring(0,6)+"...";
-                      userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result.LastWinAmount,'ether');
+                    userDetailObj.contract.methods.getWinners().call().then((result)=>{
+                      userDetailObj.winnerArr[i] = result[Object.keys(result)[0]][i].substring(0,6)+"...";
+                      userDetailObj.winnerAmountArr[i] = window.web3.utils.fromWei(result[Object.keys(result)[1]][i],'ether');
                       app.setState({userDetail:userDetailObj});
                     });
                   }
