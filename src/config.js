@@ -1,4 +1,4 @@
-export const _CONTRACT_ADDRESS = '0xFA049942D60332Fac50038E57357B08f92b3E59f' ////testnet v1.45 optimize functions
+export const _CONTRACT_ADDRESS = '0x6BF66790396CB4A5eec5211FEaBeE48f3A91e38A' ////testnet v1.45 optimize functions
 //'0x526D3079340f0dc6013570981F213669E5cAC09D'//testnet v1.44 - test single transfer with multitransfer
 //'0x08321c0FEa5Ca2B59dA91983d81b0B36230a5507' //testnet v1.43  - optimize 200 compile
 //'0xf9Ee09e07E6bbDB7A785d55834dbf420586E270F' //testnet v1.42 - optimize comparison 8 users
