@@ -36,12 +36,9 @@ class App extends Component {
             userDetailObj.userExist = result
             this.setState({userExist:result})
           });
-          userDetailObj.contract.methods.users(userDetailObj.account).call().then((result)=>{
+          userDetailObj.contract.methods.Users(userDetailObj.account).call().then((result)=>{
             userDetailObj.itemCount = result.itemCount;
             this.setState({itemCount:result.itemCount})
-          });
-          userDetailObj.contract.methods.lastItemId().call().then((result)=>{
-            this.setState({universeItemCount:(result)})
           });
           userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
             let itemObj = {};
@@ -59,6 +56,7 @@ class App extends Component {
             this.setState({userDetail:userDetailObj});
           });
           userDetailObj.contract.methods.lastItemId().call().then((result)=>{
+            this.setState({universeItemCount:(result-1)})
             if(result>8){
               userDetailObj.winnerArr = [];
               userDetailObj.winnerAmountArr = [];
@@ -118,12 +116,9 @@ class App extends Component {
                 userDetailObj.userExist = result
                 app.setState({userExist:result})
               });
-              userDetailObj.contract.methods.users(userDetailObj.account).call().then((result)=>{
+              userDetailObj.contract.methods.Users(userDetailObj.account).call().then((result)=>{
                 userDetailObj.itemCount = result.itemCount;
                 app.setState({itemCount:result.itemCount})
-              });
-              userDetailObj.contract.methods.lastItemId().call().then((result)=>{
-                app.setState({universeItemCount:(result)})
               });
               userDetailObj.contract.methods.getAllItemsByUser(userDetailObj.account).call().then((result)=>{
                 let itemObj = {};
@@ -132,6 +127,7 @@ class App extends Component {
                 itemObj.lastWinArr = [];
                 for(let i=0;i<result[Object.keys(result)[0]].length;i++){
                   itemObj.idArr[i] = result[Object.keys(result)[0]][i];
+                  console.log(result[Object.keys(result)[2]][i]);
                   itemObj.powerArr[i] = result[Object.keys(result)[1]][i];
                   itemObj.lastWinArr[i] = window.web3.utils.fromWei(result[Object.keys(result)[2]][i],'ether');
                 }
@@ -141,6 +137,7 @@ class App extends Component {
                 app.setState({userDetail:userDetailObj});
               });
               userDetailObj.contract.methods.lastItemId().call().then((result)=>{
+                app.setState({universeItemCount:(result-1)})
                 if(result>8){
                   userDetailObj.winnerArr = [];
                   userDetailObj.winnerAmountArr = [];

@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/neko-fe/static/css/main.5cda6c93.chunk.css",
-    "main.js": "/neko-fe/static/js/main.be6ae196.chunk.js",
-    "main.js.map": "/neko-fe/static/js/main.be6ae196.chunk.js.map",
+    "main.js": "/neko-fe/static/js/main.69dbec02.chunk.js",
+    "main.js.map": "/neko-fe/static/js/main.69dbec02.chunk.js.map",
     "runtime-main.js": "/neko-fe/static/js/runtime-main.73b5d6ce.js",
     "runtime-main.js.map": "/neko-fe/static/js/runtime-main.73b5d6ce.js.map",
     "static/css/2.43b2b750.chunk.css": "/neko-fe/static/css/2.43b2b750.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.43b2b750.chunk.css",
     "static/js/2.4eec1d52.chunk.js",
     "static/css/main.5cda6c93.chunk.css",
-    "static/js/main.be6ae196.chunk.js"
+    "static/js/main.69dbec02.chunk.js"
   ]
 }
